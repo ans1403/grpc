@@ -1,0 +1,17 @@
+{
+    "1": {
+        "id": 1,
+        "name": "USER001",
+        "user_type": "ADMIN"
+    },
+    "2": {
+        "id": 2,
+        "name": "USER002",
+        "user_type": "NORMAL"
+    },
+    "3": {
+        "id": 3,
+        "name": "USER003",
+        "user_type": "GUEST"
+    }
+}
