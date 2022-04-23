@@ -1,10 +1,20 @@
 version: '3.9'
 
 services:
-  python:
-    build:
-      context: .
-      dockerfile: ./docker/python/Dockerfile
+  server_python:
+    build: ./docker/python
+    command: python ./src/main/main.py
     volumes:
-      - ./:/usr/local/grpc/
+      - ./server/python:/usr/local/grpc/src
+      - ./protos:/usr/local/grpc/protos
+    tty: true
+
+  client_python:
+    build: ./docker/python
+    volumes:
+      - ./client/python:/usr/local/grpc/src
+      - ./protos:/usr/local/grpc/protos
+    environment:
+      GRPC_SERVER_HOST: server_python
+      GRPC_SERVER_PORT: 3000
     tty: true
