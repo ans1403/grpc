@@ -2,6 +2,7 @@ import argparse
 import grpc
 import os
 import sys
+from pprint import pprint
 from protobuf.user_pb2 import (
     UserSelectAllRequest,
     UserSelectByIdRequest,
@@ -28,12 +29,13 @@ def main():
         if method == "UserSelectAll":
             request = UserSelectAllRequest()
             response = stub.selectAll(request)
+            pprint(response)
 
         elif method == "UserSelectById":
             if id is not None:
                 request = UserSelectByIdRequest(id=id)
-                response = stub.selectAll(request)
-                print(response.user.name)
+                response = stub.selectById(request)
+                pprint(response)
             else:
                 print("id is none")
                 sys.exit(-1)
