@@ -34,10 +34,5 @@ message UserSelectByIdResponse {
 message User {
     uint32 id = 1;
     string name = 2;
-    enum UserType {
-        ADMIN = 0;
-        NORMAL = 1;
-        GUEST = 2;
-    }
-    UserType user_type = 3;
+    uint32 user_type = 3;
 }

@@ -7,26 +7,13 @@ from protobuf.user_pb2 import (
 
 
 data = {
-    "1": {
-        "id": 1,
-        "name": "USER001",
-        "user_type": "ADMIN"
-    },
-    "2": {
-        "id": 2,
-        "name": "USER002",
-        "user_type": "NORMAL"
-    },
-    "3": {
-        "id": 3,
-        "name": "USER003",
-        "user_type": "GUEST"
-    }
+    "1": {"id": 1, "name": "USER001", "user_type": 1},
+    "2": {"id": 2, "name": "USER002", "user_type": 2},
+    "3": {"id": 3, "name": "USER003", "user_type": 3},
 }
 
 
 class UserServiceServicerImpl(UserServiceServicer):
-
     def selectAll(self, _request, _context):
         result = []
 
@@ -34,7 +21,7 @@ class UserServiceServicerImpl(UserServiceServicer):
             user = User()
             user.id = d["id"]
             user.name = d["name"]
-            user.user_type = User.UserType.Value(d["user_type"])
+            user.user_type = d["user_type"]
             result.append(user)
 
         return UserSelectAllResponse(error=False, user=result)
