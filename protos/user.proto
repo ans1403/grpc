@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package user;
 
+option go_package = "github.com/ans1403/grpc/protobufs";
+
 // ユーザサービス
 service UserService {
     rpc selectAll (UserSelectAllRequest) returns (UserSelectAllResponse) {}
