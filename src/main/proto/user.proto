@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package user;
+
+// ユーザサービス
+service UserService {
+    rpc selectAll (UserSelectAllRequest) returns (UserSelectAllResponse) {}
+    rpc selectById (UserSelectByIdRequest) returns (UserSelectByIdResponse) {}
+}
+
+// selectAllメソッドのリクエスト
+message UserSelectAllRequest {}
+
+// selectAllメソッドのレスポンス
+message UserSelectAllResponse {
+    bool error = 1;
+    string message = 2;
+    repeated User user = 3;
+}
+
+// selectByIdメソッドのリクエスト
+message UserSelectByIdRequest {
+    uint32 id = 1;
+}
+
+// selectByIdメソッドのレスポンス
+message UserSelectByIdResponse {
+    bool error = 1;
+    string message = 2;
+    User user = 3;
+}
+
+// userオブジェクト
+message User {
+    uint32 id = 1;
+    string name = 2;
+    enum UserType {
+        ADMIN = 0;
+        NORMAL = 1;
+        GUEST = 2;
+    }
+    UserType user_type = 3;
+}
